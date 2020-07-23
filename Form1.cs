@@ -15,7 +15,7 @@ namespace Chess
     public partial class Form1 : Form
     {
         private List<Bitmap> Pieces = new List<Bitmap>();
-        private const int Size = 60;
+        private const int Size = 120;
 
         public Form1()
         {
@@ -59,10 +59,10 @@ namespace Chess
         {
             //Piece is Black
             if (util.caps(Piece.Value))
-                e.DrawImage(Pieces[util.charToNum[Char.ToLower(Piece.Value)] - 1], Piece.Key.x * Size, (7 * Size) - Piece.Key.y * Size);
+                e.DrawImage(new Bitmap(Pieces[util.charToNum[Char.ToLower(Piece.Value)] - 1], Size, Size), Piece.Key.x * Size, (7 * Size) - Piece.Key.y * Size);
             //Piece is White
             else
-                e.DrawImage(Pieces[util.charToNum[Piece.Value] + 6 - 1], Piece.Key.x * Size, (7 * Size) - Piece.Key.y * Size);
+                e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.Value] + 6 - 1], Size, Size), Piece.Key.x * Size, (7 * Size) - Piece.Key.y * Size);
         }
         #endregion
 
