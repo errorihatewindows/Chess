@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-using Board = System.Collections.Generic.Dictionary<Chess.Coordinate, char>;
+using Board = System.Collections.Generic.Dictionary<Chess.Coord, char>;
 
 namespace Chess
 {
