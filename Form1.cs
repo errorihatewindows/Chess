@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Board = System.Collections.Generic.Dictionary<System.Tuple<int, int>, char>;
+using Coord = System.Tuple<int, int>;
 using Piece = System.Collections.Generic.KeyValuePair<System.Tuple<int, int>, char>;
 
 namespace Chess
