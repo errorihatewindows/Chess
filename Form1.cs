@@ -15,12 +15,18 @@ namespace Chess
 {
     public partial class Form1 : Form
     {
+        private List<Bitmap> Pieces = new List<Bitmap>();
+
         public Form1()
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            //load Piece-Images
+            loadImages("..\\..\\Assets\\");
         }
 
+        #region Drawing
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             DrawBoard(new Board(), e.Graphics);
@@ -35,6 +41,12 @@ namespace Chess
         private void DrawPiece(Piece Piece, Graphics e)
         {
 
+        }
+        #endregion
+
+        private void loadImages(string path)
+        {
+            Pieces.Add
         }
     }
 }
