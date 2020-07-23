@@ -15,6 +15,7 @@ namespace Chess
     public partial class Form1 : Form
     {
         private List<Bitmap> Pieces = new List<Bitmap>();
+        private const int Size = 60;
 
         public Form1()
         {
@@ -22,16 +23,22 @@ namespace Chess
             DoubleBuffered = true;
 
             //load Piece-Images
-            loadImages("..\\..\\Assets\\");
+            loadImages("Assets/");
         }
 
         #region Drawing
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            DrawBoard(new Board(), e.Graphics);
+            DrawBoard(e.Graphics);
+            DrawPieces(new Board(), e.Graphics);
         }
 
-        private void DrawBoard(Board Board, Graphics e)
+        private void DrawBoard(Graphics e)
+        {
+            e.FillRectangle(Brushes.Wheat, 0, 0, Size * 8, Size * 8);
+        }
+
+        private void DrawPieces(Board Board, Graphics e)
         {
             foreach(Piece Piece in Board)
                 DrawPiece(Piece, e);
@@ -43,10 +50,16 @@ namespace Chess
         }
         #endregion
 
+
+
+
+
+
+        //---------------------------------------------------------
         private void loadImages(string path)
         {
-            for(int i )
-            Pieces.Add()
+            for (int i = 1; i < 13; i++)
+                Pieces.Add(new Bitmap(path + i.ToString() + ".png"));
         }
     }
 }

@@ -82,18 +82,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\1.png" />
+    <Content Include="Assets\10.png" />
+    <Content Include="Assets\11.png" />
     <Content Include="Assets\2.png" />
     <Content Include="Assets\3.png" />
-    <Content Include="Assets\6.png" />
-    <Content Include="Assets\1.png" />
-    <Content Include="Assets\5.png" />
     <Content Include="Assets\4.png" />
+    <Content Include="Assets\5.png" />
+    <Content Include="Assets\6.png" />
+    <Content Include="Assets\7.png" />
     <Content Include="Assets\8.png" />
     <Content Include="Assets\9.png" />
-    <Content Include="Assets\white_king.png" />
-    <Content Include="Assets\7.png" />
-    <Content Include="Assets\11.png" />
-    <Content Include="Assets\10.png" />
+    <Content Include="Assets\12.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
