@@ -36,6 +36,10 @@ namespace Chess
         private void DrawBoard(Graphics e)
         {
             e.FillRectangle(Brushes.Wheat, 0, 0, Size * 8, Size * 8);
+            
+            for (int i = 1; i < 8; i += 2)
+                for(int j = 1; j < 8; j += 2)
+                    e.FillRectangle(Brushes.)
         }
 
         private void DrawPieces(Board Board, Graphics e)
