@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Board = System.Collections.Generic.Dictionary<Chess.Coordinate, char>;
-using Piece = System.Collections.Generic.KeyValuePair<Chess.Coordinate, char>;
+using Board = System.Collections.Generic.Dictionary<Chess.Coord, char>;
+using Piece = System.Collections.Generic.KeyValuePair<Chess.Coord, char>;
 
 namespace Chess
 {
@@ -18,6 +18,10 @@ namespace Chess
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            Coord test1 = new Coord(0, 0);
+            Coord test2 = new Coord("C8");
+            Console.WriteLine("test1: {0} \ntest2: {1} , {2}", test1.ToString(), test2.x, test2.y);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
