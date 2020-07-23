@@ -46,7 +46,8 @@ namespace Chess
 
         private void loadImages(string path)
         {
-            Pieces.Add
+            for(int i )
+            Pieces.Add()
         }
     }
 }
