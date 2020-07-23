@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Board = System.Collections.Generic.Dictionary<Chess.Coordinate, char>;
-using Piece = System.Collections.Generic.KeyValuePair<Chess.Coordinate, char>;
+using Board = System.Collections.Generic.Dictionary<Chess.Coord, char>;
+using Piece = System.Collections.Generic.KeyValuePair<Chess.Coord, char>;
 
 namespace Chess
 {
