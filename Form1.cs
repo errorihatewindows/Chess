@@ -29,8 +29,12 @@ namespace Chess
         #region Drawing
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            Board testBoard = new Board();
+            testBoard.Add(new Coord("B2"), 'N');
+            testBoard.Add(new Coord("A8"), 'q');
+
             DrawBoard(e.Graphics);
-            DrawPieces(new Board(), e.Graphics);
+            DrawPieces(testBoard, e.Graphics);
         }
 
         private void DrawBoard(Graphics e)
@@ -53,7 +57,12 @@ namespace Chess
 
         private void DrawPiece(Piece Piece, Graphics e)
         {
-
+            //Piece is Black
+            if (util.caps(Piece.Value))
+                e.DrawImage(Pieces[util.charToNum[Char.ToLower(Piece.Value)] - 1], Piece.Key.x * Size, (7 * Size) - Piece.Key.y * Size);
+            //Piece is White
+            else
+                e.DrawImage(Pieces[util.charToNum[Piece.Value] + 6 - 1], Piece.Key.x * Size, (7 * Size) - Piece.Key.y * Size);
         }
         #endregion
 
