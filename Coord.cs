@@ -33,15 +33,15 @@ namespace Chess
 
         public void set(string input)
         {
-            y = input[0] - 'A';
-            x = input[1] - '1';
+            x = input[0] - 'A';
+            y = input[1] - '1';
         }
 
         public override string ToString()
         {
             string output = "";
-            output += Convert.ToChar(y + 'A');
-            output += Convert.ToChar(x + '1');
+            output += Convert.ToChar(x + 'A');
+            output += Convert.ToChar(y + '1');
             return output;
         }
     }
