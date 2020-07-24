@@ -44,5 +44,13 @@ namespace Chess
             output += Convert.ToChar(y + '1');
             return output;
         }
+
+        public bool OutSideBoard()
+        {
+            if (x < 0 || x > 7 || y < 0 || y > 7)
+                return true;
+            return false;
+        }
+
     }
 }

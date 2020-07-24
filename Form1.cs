@@ -8,8 +8,6 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Board = System.Collections.Generic.Dictionary<Chess.Coord, char>;
-using Piece = System.Collections.Generic.KeyValuePair<Chess.Coord, char>;
 
 namespace Chess
 {
@@ -18,8 +16,8 @@ namespace Chess
         private List<Bitmap> Pieces = new List<Bitmap>();
         private List<Tuple<Coord, Color>> HighlightedTiles = new List<Tuple<Coord, Color>>();
         private bool PlayersTurn = false;
-        private const int Size = 80;
-
+        private const int TileSize = 80;
+        private Board TestBoard;
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +25,8 @@ namespace Chess
 
             //load Piece-Images
             loadImages("Assets/");
+
+            TestBoard = new Board();
         }
 
         #region Input
@@ -55,50 +55,45 @@ namespace Chess
 
         #endregion
 
-
-
-
-
         #region Drawing
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Board testBoard = new Board();
-            testBoard.Add(new Coord("B3"), 'N');
-            testBoard.Add(new Coord("A8"), 'q');
 
-            HighlightedTiles.Add(Tuple.Create(new Coord("C4"), Color.Red));
+
+            HighlightedTiles.Add(Tuple.Create(new Coord("C4"), Color.Blue));
+            HighlightedTiles.Add(Tuple.Create(new Coord("B1"), Color.Green));
 
             DrawBoard(e.Graphics);
-            DrawPieces(testBoard, e.Graphics);
+            DrawPieces(TestBoard.Pieces, e.Graphics);
             HighlightTiles(HighlightedTiles, e.Graphics);
         }
 
         private void DrawBoard(Graphics e)
         {
-            e.FillRectangle(Brushes.PeachPuff, 0, 0, Size * 8, Size * 8);
+            e.FillRectangle(Brushes.PeachPuff, 0, 0, TileSize * 8, TileSize * 8);
 
             for (int i = 1; i < 8; i += 2)
                 for (int j = 0; j < 8; j += 2)
-                    e.FillRectangle(Brushes.Sienna, i * Size, j * Size, Size, Size);
+                    e.FillRectangle(Brushes.Sienna, i * TileSize, j * TileSize, TileSize, TileSize);
             for (int i = 0; i < 8; i += 2)
                 for (int j = 1; j < 8; j += 2)
-                    e.FillRectangle(Brushes.Sienna, i * Size, j * Size, Size, Size);
+                    e.FillRectangle(Brushes.Sienna, i * TileSize, j * TileSize, TileSize, TileSize);
         }
 
-        private void DrawPieces(Board Board, Graphics e)
+        private void DrawPieces(List<Piece> Pieces, Graphics e)
         {
-            foreach(Piece Piece in Board)
+            foreach(Piece Piece in Pieces)
                 DrawPiece(Piece, e);
         }
 
         private void DrawPiece(Piece Piece, Graphics e)
         {
             //Piece is Black
-            if (util.caps(Piece.Value))
-                e.DrawImage(new Bitmap(Pieces[util.charToNum[Char.ToLower(Piece.Value)] - 1], Size, Size), Piece.Key.x * Size, (7 - Piece.Key.y) * Size);
+            if (util.caps(Piece.Identity))
+                e.DrawImage(new Bitmap(Pieces[util.charToNum[Char.ToLower(Piece.Identity)] - 1], TileSize, TileSize), Piece.Position.x * TileSize, (7 - Piece.Position.y) * TileSize);
             //Piece is White
             else
-                e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.Value] + 6 - 1], Size, Size), Piece.Key.x * Size, (7 - Piece.Key.y) * Size);
+                e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.Identity] + 6 - 1], TileSize, TileSize), Piece.Position.x * TileSize, (7 - Piece.Position.y) * TileSize);
         }
 
         private void HighlightTiles(List<Tuple<Coord, Color>> Tiles, Graphics e)
@@ -109,7 +104,8 @@ namespace Chess
 
         private void HighlightTile(Coord coords, Color color, Graphics e)
         {
-            e.DrawRectangle(new Pen(color, 4), coords.x * Size, (7 - coords.y) * Size, Size, Size);
+            if (!coords.OutSideBoard())
+                e.DrawRectangle(new Pen(color, 5), coords.x * TileSize, (7 - coords.y) * TileSize, TileSize, TileSize);
         }
         #endregion
 
