@@ -15,7 +15,7 @@ namespace Chess
     public partial class Form1 : Form
     {
         private List<Bitmap> Pieces = new List<Bitmap>();
-        private const int Size = 120;
+        private const int Size = 80;
 
         public Form1()
         {
