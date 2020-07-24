@@ -18,10 +18,5 @@ namespace Chess
             this.Identity = Identity;
             MoveCount = 0;
         }
-
-        public void AddMove()
-        {
-            MoveCount++;
-        }
     }
 }

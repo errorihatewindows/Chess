@@ -26,6 +26,7 @@ namespace Chess
             //load Piece-Images
             loadImages("Assets/");
 
+            //only Testing
             TestBoard = new Board();
         }
 
