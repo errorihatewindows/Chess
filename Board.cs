@@ -32,8 +32,8 @@ namespace Chess
             Pieces = new List<Piece>();
             for (int i = 0; i < 8; i++)
             {
-                Pieces.Add(new Pawn(new Coord(i, 1), 'W', 0));
-                Pieces.Add(new Pawn(new Coord(i, 6), 'B', 0));
+                Pieces.Add(new Pawn(new Coord(i, 1).ToString(), 'W', 0));
+                Pieces.Add(new Pawn(new Coord(i, 6).ToString(), 'B', 0));
             }
                            
         }
