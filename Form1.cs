@@ -28,7 +28,7 @@ namespace Chess
 
             //only Testing
             TestBoard = new Board();
-            Board TempBoard = new Board(TestBoard);
+            Board TempBoard = TestBoard.Copy();
             TestBoard.Add();
 
             Console.WriteLine(TempBoard.Pieces.Count());

@@ -18,16 +18,16 @@ namespace Chess
             this.Pieces = new List<Piece>(Testboard.Pieces);
         }
 
-
-
+        public Board Copy()
+        {
+            return new Board(this);
+        }
 
         public void Add()
         {
             Pieces.Add(new Piece(new Coord("D4"), 'p'));
         }
         
-
-
 
 
 
