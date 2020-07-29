@@ -5,8 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-
-using Board = System.Collections.Generic.Dictionary<Chess.Coord, char>;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace Chess
 {
@@ -31,6 +31,19 @@ namespace Chess
             {'q', 5},
             {'k', 6}
         };
+
+        public static T DeepClone<T>(this T obj)
+        {
+            using (var ms = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(ms, obj);
+                ms.Position = 0;
+
+                return (T)formatter.Deserialize(ms);
+            }
+        }
+
 
     }
 }

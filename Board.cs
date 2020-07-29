@@ -1,11 +1,14 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Chess
 {
+    [Serializable]
     class Board
     {
         public List<Piece> Pieces = new List<Piece>();
@@ -13,15 +16,13 @@ namespace Chess
         {
             InitStartingPos();
         }
-        public Board(Board Testboard)
-        {
-            this.Pieces = new List<Piece>(Testboard.Pieces);
-        }
 
         public Board Copy()
         {
-            return new Board(this);
+            return util.DeepClone<Board>(this);
         }
+
+
 
         public void Add()
         {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chess
 {
+    [Serializable]
     class Piece
     {
         public Coord Position;
