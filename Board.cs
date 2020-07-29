@@ -15,7 +15,7 @@ namespace Chess
         }
         public Board(Board Testboard)
         {
-            this.Pieces = Testboard.Pieces;
+            this.Pieces = new List<Piece>(Testboard.Pieces);
         }
 
 
