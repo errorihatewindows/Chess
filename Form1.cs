@@ -28,10 +28,15 @@ namespace Chess
 
             //only Testing
             TestBoard = new Board();
+            
+            //2 ways 
             Board TempBoard = TestBoard.Copy();
+            Board TempBoard2 = util.DeepClone<Board>(TestBoard);            
             TestBoard.Add();
-
+            
             Console.WriteLine(TempBoard.Pieces.Count());
+            Console.WriteLine(TempBoard2.Pieces.Count());    
+
         }
 
         #region Input
