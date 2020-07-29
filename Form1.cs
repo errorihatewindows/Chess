@@ -21,6 +21,7 @@ namespace Chess
         {
             InitializeComponent();
             DoubleBuffered = true;
+            ClientSize = new Size(TileSize * 8, TileSize * 8);
 
             //load Piece-Images
             loadImages("Assets/");
