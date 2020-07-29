@@ -32,7 +32,8 @@ namespace Chess
             {'k', 6}
         };
 
-        public static T DeepClone<T>(this T obj)
+        //Deep-Clones a given Object
+        public static T Clone<T>(this T obj)
         {
             using (var ms = new MemoryStream())
             {

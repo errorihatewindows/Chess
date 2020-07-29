@@ -17,9 +17,10 @@ namespace Chess
             InitStartingPos();
         }
 
+        //returns Deep-Copy of this Board
         public Board Copy()
         {
-            return util.DeepClone(this);
+            return util.Clone(this);
         }
 
 
