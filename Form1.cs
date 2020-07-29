@@ -17,6 +17,7 @@ namespace Chess
         private List<Tuple<Coord, Color>> HighlightedTiles = new List<Tuple<Coord, Color>>();
         private bool PlayersTurn = false;
         private const int TileSize = 80;
+        private string Move;
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace Chess
 
         private string TakeTurn()
         {
-            string Move = string.Empty;
+            Move = string.Empty;
             PlayersTurn = true;
 
             //wait for completion of move
@@ -45,9 +46,7 @@ namespace Chess
         {
             if (PlayersTurn)
             {
-                //Highlight clikced Piece (if own piece)
-                
-                //Highlight all possible target positions
+               
             }
         }
 
@@ -114,6 +113,5 @@ namespace Chess
             for (int i = 1; i < 13; i++)
                 Pieces.Add(new Bitmap(path + i.ToString() + ".png"));
         }
-
     }
 }
