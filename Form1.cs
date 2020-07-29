@@ -55,12 +55,14 @@ namespace Chess
         {
             if (PlayersTurn && GetTile(e.X, e.Y) != null)
             {
+                //override Move
                 if (Move.Length == 4) 
                 { 
                     Move = string.Empty; 
                     HighlightedTiles.Clear(); 
                 }
 
+                //Add Position
                 Move += GetTile(e.X, e.Y);
                 HighlightedTiles.Add(Tuple.Create(new Coord(GetTile(e.X, e.Y)), Color.Blue));
                 Refresh();
@@ -71,15 +73,20 @@ namespace Chess
         {
             if (PlayersTurn)
             {
+                //Delet current Input
                 if (e.KeyCode == Keys.Escape)
                 {
                     Move = string.Empty;
                     HighlightedTiles.Clear();
                     Refresh();
                 }
-                if (e.KeyCode == Keys.Enter)
+                //Move Completed
+                if (e.KeyCode == Keys.Enter && Move.Length > 3)
                     Move_Finish = true;
             }
+
+            if(e.KeyCode == Keys.Down)
+                TakeTurn();
         }
 
 
