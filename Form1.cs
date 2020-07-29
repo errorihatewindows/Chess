@@ -28,6 +28,10 @@ namespace Chess
 
             //only Testing
             TestBoard = new Board();
+            Board TempBoard = new Board(TestBoard);
+            TestBoard.Add();
+
+            Console.WriteLine(TempBoard.Pieces.Count());
         }
 
         #region Input

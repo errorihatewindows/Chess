@@ -13,9 +13,19 @@ namespace Chess
         {
             InitStartingPos();
         }
+        public Board(Board Testboard)
+        {
+            this.Pieces = Testboard.Pieces;
+        }
 
+
+
+
+        public void Add()
+        {
+            Pieces.Add(new Piece(new Coord("D4"), 'p'));
+        }
         
-
 
 
 
