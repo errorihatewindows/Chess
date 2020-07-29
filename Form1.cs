@@ -18,6 +18,7 @@ namespace Chess
         private bool PlayersTurn = false;
         private const int TileSize = 80;
         private string Move;
+        private bool Move_Finish;
         public Form1()
         {
             InitializeComponent();
@@ -25,30 +26,63 @@ namespace Chess
             ClientSize = new Size(TileSize * 8, TileSize * 8);
 
             //load Piece-Images
-            loadImages("Assets/");
+            LoadImages("Assets/");
+
+
         }
 
         #region Input
 
         private string TakeTurn()
         {
+            Move_Finish = false;
             Move = string.Empty;
             PlayersTurn = true;
 
-            //wait for completion of move
+            while(!Move_Finish || Move.Length < 4)
+            {
+                Application.DoEvents();
+            }
 
+            Console.WriteLine(Move);
             PlayersTurn = false;
             HighlightedTiles.Clear();
+            Refresh();
             return Move;
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (PlayersTurn)
+            if (PlayersTurn && GetTile(e.X, e.Y) != null)
             {
-               
+                if (Move.Length == 4) 
+                { 
+                    Move = string.Empty; 
+                    HighlightedTiles.Clear(); 
+                }
+
+                Move += GetTile(e.X, e.Y);
+                HighlightedTiles.Add(Tuple.Create(new Coord(GetTile(e.X, e.Y)), Color.Blue));
+                Refresh();
             }
         }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (PlayersTurn)
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    Move = string.Empty;
+                    HighlightedTiles.Clear();
+                    Refresh();
+                }
+                if (e.KeyCode == Keys.Enter)
+                    Move_Finish = true;
+            }
+        }
+
+
 
         #endregion
 
@@ -108,10 +142,19 @@ namespace Chess
 
 
         //---------------------------------------------------------
-        private void loadImages(string path)
+        private void LoadImages(string path)
         {
             for (int i = 1; i < 13; i++)
                 Pieces.Add(new Bitmap(path + i.ToString() + ".png"));
         }
+
+        private string GetTile(int x, int y)
+        {
+            if (!new Coord(x / TileSize, 7 - (y / TileSize)).OutSideBoard())
+                return new Coord(x / TileSize, 7 - (y / TileSize)).ToString();
+            return null;
+        }
+
+
     }
 }
