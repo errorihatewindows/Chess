@@ -31,7 +31,7 @@ namespace Chess
             
             //2 ways 
             Board TempBoard = TestBoard.Copy();
-            Board TempBoard2 = util.DeepClone<Board>(TestBoard);            
+            Board TempBoard2 = util.DeepClone(TestBoard);            
             TestBoard.Add();
             
             Console.WriteLine(TempBoard.Pieces.Count());

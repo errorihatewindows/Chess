@@ -19,7 +19,7 @@ namespace Chess
 
         public Board Copy()
         {
-            return util.DeepClone<Board>(this);
+            return util.DeepClone(this);
         }
 
 
