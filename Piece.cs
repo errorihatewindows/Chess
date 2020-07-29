@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Chess
 {
@@ -10,14 +11,17 @@ namespace Chess
     class Piece
     {
         public Coord Position;
-        public char Identity;
         public int MoveCount;
+        public char Color;
 
-        public Piece(Coord Position, char Identity)
+        public Piece(Coord Position, char Color, int MoveCount)
         {
+            this.Color = Color;
             this.Position = Position;
-            this.Identity = Identity;
-            MoveCount = 0;
+            this.MoveCount = MoveCount;
         }
+
+
+
     }
 }

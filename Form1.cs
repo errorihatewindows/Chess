@@ -17,7 +17,6 @@ namespace Chess
         private List<Tuple<Coord, Color>> HighlightedTiles = new List<Tuple<Coord, Color>>();
         private bool PlayersTurn = false;
         private const int TileSize = 80;
-        private Board TestBoard;
         public Form1()
         {
             InitializeComponent();
@@ -25,18 +24,6 @@ namespace Chess
 
             //load Piece-Images
             loadImages("Assets/");
-
-            //only Testing
-            TestBoard = new Board();
-            
-            //2 ways 
-            Board TempBoard = TestBoard.Copy();
-            Board TempBoard2 = util.Clone(TestBoard);            
-            TestBoard.Add();
-            
-            Console.WriteLine(TempBoard.Pieces.Count());
-            Console.WriteLine(TempBoard2.Pieces.Count());    
-
         }
 
         #region Input
@@ -68,10 +55,7 @@ namespace Chess
         #region Drawing
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-
-
-            HighlightedTiles.Add(Tuple.Create(new Coord("C4"), Color.Blue));
-            HighlightedTiles.Add(Tuple.Create(new Coord("B1"), Color.Green));
+            Board TestBoard = new Board();
 
             DrawBoard(e.Graphics);
             DrawPieces(TestBoard.Pieces, e.Graphics);
@@ -98,12 +82,11 @@ namespace Chess
 
         private void DrawPiece(Piece Piece, Graphics e)
         {
-            //Piece is Black
-            if (util.caps(Piece.Identity))
-                e.DrawImage(new Bitmap(Pieces[util.charToNum[Char.ToLower(Piece.Identity)] - 1], TileSize, TileSize), Piece.Position.x * TileSize, (7 - Piece.Position.y) * TileSize);
-            //Piece is White
-            else
-                e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.Identity] + 6 - 1], TileSize, TileSize), Piece.Position.x * TileSize, (7 - Piece.Position.y) * TileSize);
+            int n = 0;
+            //Picture offset if White
+            if (Piece.Color == 'W') { n = 6; }
+
+            e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.GetType()] + n - 1], TileSize, TileSize), Piece.Position.x * TileSize, (7 - Piece.Position.y) * TileSize);
         }
 
         private void HighlightTiles(List<Tuple<Coord, Color>> Tiles, Graphics e)
