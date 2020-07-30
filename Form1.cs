@@ -27,8 +27,6 @@ namespace Chess
 
             //load Piece-Images
             LoadImages("Assets/");
-
-
         }
 
         #region Input
@@ -126,7 +124,6 @@ namespace Chess
             int n = 0;
             //Picture offset if White
             if (Piece.Color == 'W') { n = 6; }
-
             e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.GetType()] + n - 1], TileSize, TileSize), Piece.Position.x * TileSize, (7 - Piece.Position.y) * TileSize);
         }
 
@@ -147,7 +144,7 @@ namespace Chess
 
 
 
-
+        //util functions
         //---------------------------------------------------------
         private void LoadImages(string path)
         {
@@ -157,8 +154,9 @@ namespace Chess
 
         private string GetTile(int x, int y)
         {
-            if (!new Coord(x / TileSize, 7 - (y / TileSize)).OutSideBoard())
-                return new Coord(x / TileSize, 7 - (y / TileSize)).ToString();
+            Coord coord = new Coord(x / TileSize, 7 - (y / TileSize));
+            if (!coord.OutSideBoard())
+                return coord.ToString();
             return null;
         }
 
