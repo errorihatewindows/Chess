@@ -7,10 +7,9 @@ using System.Windows.Forms;
 
 namespace Chess
 {
-    [Serializable]
     class Piece
     {
-        public Coord Position;
+        private Coord Position;
         public int MoveCount;
         public char Color;
 
@@ -21,7 +20,13 @@ namespace Chess
             this.MoveCount = MoveCount;
         }
 
-        public string[] blocking(string Target) //list of fields between target and current coords
+        #region getter
+        public int x() { return Position.x; }
+        public int y() { return Position.y; }
+        public string getPos() { return Position.ToString(); }
+        #endregion
+
+        public virtual string[] blocking(string Target) //list of fields between target and current coords
         {
             Coord target = new Coord(Target);
             Coord direction = new Coord(0, 0);  //direction the target is in
@@ -29,9 +34,6 @@ namespace Chess
                 direction.x = 1;
             if (target.y != 0)
                 direction.y = 1;
-            //filter out knight moves
-            if ((target.y + target.x == 2) && (target.x != target.y))
-                return new string[0];
             //distance from 1 point to the next on 1 axis
             int distance = (target.x + target.y) / (direction.x + direction.y);
             Coord current = new Coord(Position.ToString());
@@ -45,15 +47,15 @@ namespace Chess
             return output;
         }
         //list of all moves (if board is empty) each Piece implements this
-        public virtual string[] Movelist()
+        public virtual string[] Moveset()
         {
             return null;
         }
 
         //list of all captures, for non-Pawn this is the same as Movelist
-        public virtual string[] Caputrelist()
+        public virtual string[] Caputreset()
         {
-            return Movelist();
+            return Moveset();
         }
 
     }

@@ -12,5 +12,11 @@ namespace Chess
         {
 
         }
+
+        //knights dont get blocked
+        public override string[] blocking(string Target)
+        {
+            return new string[0];
+        }
     }
 }
