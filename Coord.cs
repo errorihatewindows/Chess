@@ -8,7 +8,6 @@ using System.Xml;
 
 namespace Chess
 {
-    [Serializable]
     class Coord
     {
         //coordinates are stored as (0,0) (bottom left corner)

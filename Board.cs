@@ -8,23 +8,14 @@ using System.Windows.Forms;
 
 namespace Chess
 {
-    [Serializable]
     class Board
     {
         public List<Piece> Pieces;
 
         public Board()
         {
-            InitStartingPos();
+            InitStartingPos();           
         }
-
-        //returns Deep-Copy of this Board
-        public Board Copy()
-        {
-            return util.Clone(this);
-        }
-
-
 
         //---------------------------------------
         private void InitStartingPos()

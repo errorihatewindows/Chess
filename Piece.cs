@@ -7,7 +7,6 @@ using System.Windows.Forms;
 
 namespace Chess
 {
-    [Serializable]
     class Piece
     {
         public Coord Position;
