@@ -17,10 +17,36 @@ namespace Chess
         {
             List<string> Possible = new List<string>();
 
-
-
-
+            int x = this.x();
+            int y = this.y();
+            while (x > 0 && y > 0)
+            {
+                x--; y--;
+                Possible.Add((new Coord(x, y)).ToString());
+            }
+            x = this.x();
+            y = this.y();
+            while (x < 7 && y > 0)
+            {
+                x++; y--;
+                Possible.Add((new Coord(x, y)).ToString());
+            }
+            x = this.x();
+            y = this.y();
+            while (x < 7 && y < 7)
+            {
+                x++; y++;
+                Possible.Add((new Coord(x, y)).ToString());
+            }
+            x = this.x();
+            y = this.y();
+            while (x > 0 && y < 7)
+            {
+                x--; y++;
+                Possible.Add((new Coord(x, y)).ToString());
+            }
             return Possible.ToArray();
+
         }
 
     }
