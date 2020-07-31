@@ -50,7 +50,7 @@ namespace Chess
         public abstract string[] Moveset();
 
         //list of all captures, for non-Pawn this is the same as Movelist
-        public virtual string[] Caputreset()
+        public virtual string[] Captureset()
         {
             return Moveset();
         }

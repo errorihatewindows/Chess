@@ -68,9 +68,18 @@ namespace Chess
             //rules as conjunctive normal form
             if (piece == -1) { return false; }
             if (Pieces[piece].Color != turn) { return false; }
-            if (target != -1)
+            if (target != -1) //target is not empty field
+            { 
                 if (Pieces[target].Color == turn) { return false; }
-            if (!Pieces[target].Moveset().Contains(targetcoord)) { return false; }
+                if (!Pieces[target].Captureset().Contains(targetcoord)) { return false; }  //for pawns capture moveset != normal moveset
+            } else
+                if (!Pieces[target].Moveset().Contains(targetcoord)) { return false; }
+            //no piece blocks 
+            string[] blocking = Pieces[piece].blocking(targetcoord);
+            foreach (string block in blocking)
+                foreach (Piece possible in Pieces)
+                    if (possible.getPos() == block) { return false; }
+            //implement check
 
             return true;
         }
