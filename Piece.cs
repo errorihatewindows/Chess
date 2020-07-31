@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Chess
 {
-    class Piece
+    abstract class Piece
     {
         private Coord Position;
         public int MoveCount;
@@ -47,10 +47,7 @@ namespace Chess
             return output;
         }
         //list of all moves (if board is empty) each Piece implements this
-        public virtual string[] Moveset()
-        {
-            return null;
-        }
+        public abstract string[] Moveset();
 
         //list of all captures, for non-Pawn this is the same as Movelist
         public virtual string[] Caputreset()
