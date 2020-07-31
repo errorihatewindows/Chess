@@ -124,7 +124,7 @@ namespace Chess
             int n = 0;
             //Picture offset if White
             if (Piece.Color == 'W') { n = 6; }
-            e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.GetType()] + n - 1], TileSize, TileSize), Piece.x() * TileSize, (7 - Piece.y()) * TileSize);
+            e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.GetType()] + n], TileSize, TileSize), Piece.x() * TileSize, (7 - Piece.y()) * TileSize);
         }
 
         private void HighlightTiles(List<Tuple<Coord, Color>> Tiles, Graphics e)
@@ -148,7 +148,7 @@ namespace Chess
         //---------------------------------------------------------
         private void LoadImages(string path)
         {
-            for (int i = 1; i < 13; i++)
+            for (int i = 0; i < 12; i++)
                 Pieces.Add(new Bitmap(path + i.ToString() + ".png"));
         }
 

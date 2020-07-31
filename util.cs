@@ -15,12 +15,12 @@ namespace Chess
         //links char of Piece to Bitmap Num
         public static Dictionary<Type, int> charToNum = new Dictionary<Type, int>()
         {
-            {typeof(Pawn), 1},
-            {typeof(Bishop), 2},
-            {typeof(Knight), 3},
-            {typeof(Rook), 4},
-            {typeof(Queen), 5},
-            {typeof(King), 6}
+            {typeof(Pawn), 0},
+            {typeof(Bishop), 1},
+            {typeof(Knight), 2},
+            {typeof(Rook), 3},
+            {typeof(Queen), 4},
+            {typeof(King), 5}
         };
     }
 }
