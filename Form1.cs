@@ -19,6 +19,8 @@ namespace Chess
         private const int TileSize = 80;
         private string Move;
         private bool Move_Finish;
+
+        private char PlayerColor = 'W';
         public Form1()
         {
             InitializeComponent();
@@ -123,7 +125,7 @@ namespace Chess
         {
             int n = 0;
             //Picture offset if White
-            if (Piece.Color == 'W') { n = 6; }
+            if (Piece.Color == PlayerColor) { n = 6; }
             e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.GetType()] + n], TileSize, TileSize), Piece.x() * TileSize, (7 - Piece.y()) * TileSize);
         }
 

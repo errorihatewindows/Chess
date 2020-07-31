@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,42 +28,21 @@ namespace Chess
             {
                 Pieces.Add(new Pawn(new Coord(i, 1).ToString(), 'W', 0));
                 Pieces.Add(new Pawn(new Coord(i, 6).ToString(), 'B', 0));
-
-                switch (i)
-                {
-                    case 0:
-                        Pieces.Add(new Rook(new Coord(i, 0).ToString(), 'W', 0));
-                        Pieces.Add(new Rook(new Coord(i, 7).ToString(), 'B', 0));
-                        Pieces.Add(new Rook(new Coord(7 - i, 0).ToString(), 'W', 0));
-                        Pieces.Add(new Rook(new Coord(7 - i, 7).ToString(), 'B', 0));
-                        break;
-
-                    case 1:
-                        Pieces.Add(new Knight(new Coord(i, 0).ToString(), 'W', 0));
-                        Pieces.Add(new Knight(new Coord(i, 7).ToString(), 'B', 0));
-                        Pieces.Add(new Knight(new Coord(7 - i, 0).ToString(), 'W', 0));
-                        Pieces.Add(new Knight(new Coord(7 - i, 7).ToString(), 'B', 0));
-                        break;
-
-                    case 2:
-                        Pieces.Add(new Bishop(new Coord(i, 0).ToString(), 'W', 0));
-                        Pieces.Add(new Bishop(new Coord(i, 7).ToString(), 'B', 0));
-                        Pieces.Add(new Bishop(new Coord(7 - i, 0).ToString(), 'W', 0));
-                        Pieces.Add(new Bishop(new Coord(7 - i, 7).ToString(), 'B', 0));
-                        break;
-
-                    case 3:
-                        Pieces.Add(new Queen(new Coord(i, 0).ToString(), 'W', 0));
-                        Pieces.Add(new Queen(new Coord(7 - i, 7).ToString(), 'B', 0));
-                        break;
-
-                    case 4:
-                        Pieces.Add(new King(new Coord(i, 0).ToString(), 'W', 0));
-                        Pieces.Add(new King(new Coord(7 - i, 7).ToString(), 'B', 0));
-                        break;
-                }
             }
+            for (int i = 0; i < 8; i += 7)
+            {
+                char Color = 'W';
+                if (i == 7) { Color = 'B'; }
 
+                Pieces.Add(new Rook(new Coord(0, i).ToString(), Color, 0));
+                Pieces.Add(new Rook(new Coord(7, i).ToString(), Color, 0));
+                Pieces.Add(new Knight(new Coord(1, i).ToString(), Color, 0));
+                Pieces.Add(new Knight(new Coord(6, i).ToString(), Color, 0));
+                Pieces.Add(new Bishop(new Coord(2, i).ToString(), Color, 0));
+                Pieces.Add(new Bishop(new Coord(5, i).ToString(), Color, 0));
+                Pieces.Add(new Queen(new Coord(3, i).ToString(), Color, 0));
+                Pieces.Add(new King(new Coord(4, i).ToString(), Color, 0));
+            }
         }
                          
 

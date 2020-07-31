@@ -16,9 +16,9 @@ namespace Chess
         public static Dictionary<Type, int> charToNum = new Dictionary<Type, int>()
         {
             {typeof(Pawn), 0},
-            {typeof(Bishop), 1},
+            {typeof(Rook), 1},
             {typeof(Knight), 2},
-            {typeof(Rook), 3},
+            {typeof(Bishop), 3},
             {typeof(Queen), 4},
             {typeof(King), 5}
         };

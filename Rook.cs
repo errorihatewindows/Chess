@@ -12,6 +12,5 @@ namespace Chess
         {
 
         }
-
     }
 }
