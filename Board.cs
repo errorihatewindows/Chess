@@ -16,8 +16,7 @@ namespace Chess
 
         public Board()
         {
-            //InitStartingPos();
-            Pieces.Add(new Bishop(new Coord("H1").ToString(), 'B', 0));
+            InitStartingPos();
             turn = 0;
         }
 

@@ -20,11 +20,12 @@ namespace Chess
             for (int i = 0; i < 8; i++)
             {
                 int y = (this.y() - this.x()) + i;
-                if ((y == this.y() && i == this.x()) || new Coord(i, y).OutSideBoard()) { continue; }
-                Possible.Add(new Coord(i, y).ToString());
+                if (y == this.y() && i == this.x()) { continue; } 
+                if (!new Coord(i, y).OutSideBoard())
+                    Possible.Add(new Coord(i, y).ToString());
                 y = (this.x() + this.y()) - i;
-                if (new Coord(i, y).OutSideBoard()) { continue; }
-                Possible.Add(new Coord(i, y).ToString());
+                if (!new Coord(i, y).OutSideBoard())
+                    Possible.Add(new Coord(i, y).ToString());
             }
             return Possible.ToArray();
         }
