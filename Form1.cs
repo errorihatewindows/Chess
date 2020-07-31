@@ -31,9 +31,6 @@ namespace Chess
 
             //load Piece-Images
             LoadImages("Assets/");
-
-            TestBoard = new Board();
-            Console.WriteLine(((Bishop)TestBoard.Pieces[0]).Moveset().Length);
         }
 
         #region Input

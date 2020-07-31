@@ -16,29 +16,18 @@ namespace Chess
         public override string[] Moveset()
         {
             string[] Possible = new string[14];
-            int x = this.x();
-            while(x < 7)
+            int n = 0;
+            for (int i = 0; i < 8; i++)
             {
-                x++;
-                Possible[Possible.Length - 1] = new Coord(x, this.y()).ToString();
+                if (i == x()) { continue; }
+                Possible[n] = new Coord(i, y()).ToString();
+                n++;
             }
-            x = this.x();
-            while (x > 0)
+            for (int i = 0; i < 8; i++)
             {
-                x--;
-                Possible[Possible.Length - 1] = new Coord(x, this.y()).ToString();
-            }
-            int y = this.y();
-            while (y < 7)
-            {
-                y++;
-                Possible[Possible.Length - 1] = new Coord(this.x(), y).ToString();
-            }
-            y = this.y();
-            while (y > 0)
-            {
-                y--;
-                Possible[Possible.Length - 1] = new Coord(this.x(), y).ToString();      
+                if (i == y()) { continue; }
+                Possible[n] = new Coord(x(), i).ToString();
+                n++;
             }
 
             return Possible;
