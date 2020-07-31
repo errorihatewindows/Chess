@@ -20,7 +20,7 @@ namespace Chess
         private string Move;
         private bool Move_Finish;
 
-        Board TestBoard;
+        Board TestBoard = new Board();
 
         private char PlayerColor = 'W';
         public Form1()
@@ -31,6 +31,7 @@ namespace Chess
 
             //load Piece-Images
             LoadImages("Assets/");
+
         }
 
         #region Input
