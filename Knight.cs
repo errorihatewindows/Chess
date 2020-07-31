@@ -8,9 +8,15 @@ namespace Chess
 {
     class Knight : Piece
     {
-        public Knight(Coord Position, char Color, int MoveCount) : base(Position, Color, MoveCount)
+        public Knight(string Position, char Color, int MoveCount) : base(Position, Color, MoveCount)
         {
 
+        }
+
+        //knights dont get blocked
+        public override string[] blocking(string Target)
+        {
+            return new string[0];
         }
     }
 }
