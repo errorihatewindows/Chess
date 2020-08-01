@@ -12,12 +12,13 @@ namespace Chess
 {
     class Board
     {
-        public List<Piece> Pieces;
+        public List<Piece> Pieces = new List<Piece>();
         private int turn;   //0 means its white's move
 
         public Board()
         {
-            InitStartingPos();
+            //InitStartingPos();
+            Pieces.Add(new Bishop(new Coord("H1").ToString(), 'B', 0));
             turn = 0;
         }
 

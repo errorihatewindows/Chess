@@ -20,6 +20,8 @@ namespace Chess
         private string Move;
         private bool Move_Finish;
 
+        Board TestBoard = new Board();
+
         private char PlayerColor = 'W';
         public Form1()
         {
@@ -29,6 +31,11 @@ namespace Chess
 
             //load Piece-Images
             LoadImages("Assets/");
+
+            foreach (string move in ((Bishop)TestBoard.Pieces[0]).Moveset())
+                Console.WriteLine(move);
+            Console.WriteLine(((Bishop)TestBoard.Pieces[0]).Moveset().Length);
+
         }
 
         #region Input
@@ -96,8 +103,6 @@ namespace Chess
         #region Drawing
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Board TestBoard = new Board();
-
             DrawBoard(e.Graphics);
             DrawPieces(TestBoard.Pieces, e.Graphics);
             HighlightTiles(HighlightedTiles, e.Graphics);
