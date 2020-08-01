@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +26,8 @@ namespace Chess
         public int y() { return Position.y; }
         public string getPos() { return Position.ToString(); }
         #endregion
+
+        public void move(string target) { Position.set(target); }
 
         public virtual string[] blocking(string Target) //list of fields between target and current coords
         {

@@ -31,11 +31,6 @@ namespace Chess
 
             //load Piece-Images
             LoadImages("Assets/");
-
-            foreach (string move in ((Bishop)TestBoard.Pieces[0]).Moveset())
-                Console.WriteLine(move);
-            Console.WriteLine(((Bishop)TestBoard.Pieces[0]).Moveset().Length);
-
         }
 
         #region Input
@@ -104,7 +99,7 @@ namespace Chess
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             DrawBoard(e.Graphics);
-            DrawPieces(TestBoard.Pieces, e.Graphics);
+            DrawPieces(TestBoard.getPieces(), e.Graphics);
             HighlightTiles(HighlightedTiles, e.Graphics);
         }
 

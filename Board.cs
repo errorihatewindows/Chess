@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,15 +13,18 @@ namespace Chess
 {
     class Board
     {
-        public List<Piece> Pieces = new List<Piece>();
-        private int turn;   //0 means its white's move
+        private List<Piece> Pieces = new List<Piece>();
+        private List<string> Moves = new List<string>();
 
         public Board()
         {
             //InitStartingPos();
             Pieces.Add(new Bishop(new Coord("H1").ToString(), 'B', 0));
-            turn = 0;
         }
+
+        #region getter
+        public List<Piece> getPieces() { return Pieces; }
+        #endregion
 
         //---------------------------------------
         private void InitStartingPos()
@@ -57,6 +61,10 @@ namespace Chess
             return -1;
         }
 
+        private void revert(int count = 1)
+        {
+            if (Moves.Count < count) { return; }
+        }
         #region rules
         //checks if the given move is valid
         private bool valid(string GivenMove)
@@ -68,10 +76,10 @@ namespace Chess
             int target = findCoord(targetcoord);
             //rules as conjunctive normal form
             if (piece == -1) { return false; }
-            if (Pieces[piece].Color != turn) { return false; }
+            if (Pieces[piece].Color != Moves.Count%2) { return false; }
             if (target != -1) //target is not empty field
             { 
-                if (Pieces[target].Color == turn) { return false; }
+                if (Pieces[target].Color == Moves.Count%2) { return false; }
                 if (!Pieces[target].Captureset().Contains(targetcoord)) { return false; }  //for pawns capture moveset != normal moveset
             } else
                 if (!Pieces[target].Moveset().Contains(targetcoord)) { return false; }
@@ -83,6 +91,17 @@ namespace Chess
             //implement check
 
             return true;
+        }
+        #endregion
+
+        #region moves
+        public void Move_unchecked(string move)
+        {
+            //if target is a piece capture it
+            int target = findCoord(move.Substring(2, 2));
+            if (target != -1) { Pieces.RemoveAt(target); }
+            int piece = findCoord(move.Substring(0, 2));
+            Pieces[piece].move(move.Substring(2, 2));
         }
         #endregion
 

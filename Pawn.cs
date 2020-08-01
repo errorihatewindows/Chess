@@ -28,7 +28,7 @@ namespace Chess
             return Possible.ToArray();
         }
 
-        public override string[] Caputreset()
+        public override string[] Captureset()
         {
             List<string> Possible = new List<string>();
             if (!(x() - 1 < 0))
