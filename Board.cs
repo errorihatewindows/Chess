@@ -98,7 +98,7 @@ namespace Chess
         }
 
         //checks if a given move is valid, includes check
-        private bool valid (string GivenMove)
+        private bool valid(string GivenMove)
         {
             //move is valid except for check
             if (!valid_noncheck(GivenMove)) { return false; }

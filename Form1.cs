@@ -16,7 +16,7 @@ namespace Chess
         private List<Bitmap> Pieces = new List<Bitmap>();
         private List<Tuple<Coord, Color>> HighlightedTiles = new List<Tuple<Coord, Color>>();
         private bool PlayersTurn = false;
-        private const int TileSize = 80;
+        private const int TileSize = 60;
         private string Move;
         private bool Move_Finish;
 
@@ -138,7 +138,7 @@ namespace Chess
         private void HighlightTile(Coord coords, Color color, Graphics e)
         {
             if (!coords.OutSideBoard())
-                e.DrawRectangle(new Pen(color, 5), coords.x * TileSize, (7 - coords.y) * TileSize, TileSize, TileSize);
+                e.DrawRectangle(new Pen(color, TileSize / 11), coords.x * TileSize, (7 - coords.y) * TileSize, TileSize, TileSize);
         }
         #endregion
 
