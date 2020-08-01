@@ -64,10 +64,17 @@ namespace Chess
         private void revert(int count = 1)
         {
             if (Moves.Count < count) { return; }
+            for (int i = 1; i < count+1; i++)
+            {
+                string origmove = Moves[Moves.Count - i];
+                string move = origmove.Substring(2, 2) + origmove.Substring(2, 2);
+                //missing transform implementation
+                Move_unchecked(move);
+            }
         }
         #region rules
-        //checks if the given move is valid
-        private bool valid(string GivenMove)
+        //checks if the given move is valid, ignoring check
+        private bool valid_noncheck(string GivenMove)
         {
             //for transforming, GivenMove is move+transform
             string move = GivenMove;
@@ -88,8 +95,43 @@ namespace Chess
             foreach (string block in blocking)
                 foreach (Piece possible in Pieces)
                     if (possible.getPos() == block) { return false; }
-            //implement check
+            return true;
+        }
 
+        //checks if a given move is valid, includes check
+        private bool valid (string GivenMove)
+        {
+            //move is valid except for check
+            if (!valid_noncheck(GivenMove)) { return false; }
+            //check check
+            Move_unchecked(GivenMove);
+            bool isCheck = check(true);
+            revert();
+            return isCheck;
+        }
+
+        private bool check(bool enemy = false)
+        {
+            //if enemy is set, check if the enemy king is check instead of own 
+            int turn = Moves.Count % 2;
+            if (enemy) { turn = (turn+1)% 2; }
+            int eturn = (turn + 1) % 2;
+            King king = null;
+
+            //find King of the player to be checked
+            foreach (Piece piece in Pieces)
+                if (piece.GetType() == typeof(King) && piece.Color == turn)
+                {
+                    king = (King)piece;
+                }
+
+            //can any enemy Piece reach the king
+            foreach (Piece piece in Pieces)
+            {
+                if (piece.Color == turn) { continue; }
+                string move = piece.getPos() + king.getPos();
+                if (valid_noncheck(move)) { return false; }
+            }
             return true;
         }
         #endregion
