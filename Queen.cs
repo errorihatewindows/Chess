@@ -29,33 +29,15 @@ namespace Chess
             }
 
             //diagonal
-            int x = this.x();
-            int y = this.y();
-            while (x > 0 && y > 0)
+            for (int i = 0; i < 8; i++)
             {
-                x--; y--;
-                Possible.Add((new Coord(x, y)).ToString());
-            }
-            x = this.x();
-            y = this.y();
-            while (x < 7 && y > 0)
-            {
-                x++; y--;
-                Possible.Add((new Coord(x, y)).ToString());
-            }
-            x = this.x();
-            y = this.y();
-            while (x < 7 && y < 7)
-            {
-                x++; y++;
-                Possible.Add((new Coord(x, y)).ToString());
-            }
-            x = this.x();
-            y = this.y();
-            while (x > 0 && y < 7)
-            {
-                x--; y++;
-                Possible.Add((new Coord(x, y)).ToString());
+                int y = (this.y() - this.x()) + i;
+                if (y == this.y() && i == this.x()) { continue; }
+                if (!new Coord(i, y).OutSideBoard())
+                    Possible.Add(new Coord(i, y).ToString());
+                y = (this.x() + this.y()) - i;
+                if (!new Coord(i, y).OutSideBoard())
+                    Possible.Add(new Coord(i, y).ToString());
             }
             return Possible.ToArray();
 
