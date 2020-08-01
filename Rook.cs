@@ -19,17 +19,17 @@ namespace Chess
             int n = 0;
             for (int i = 0; i < 8; i++)
             {
-                if (i == x()) { continue; }
-                Possible[n] = new Coord(i, y()).ToString();
-                n++;
+                if (!(i == x()))
+                {
+                    Possible[n] = new Coord(i, y()).ToString();
+                    n++;
+                }
+                if (!(i == y()))
+                {
+                    Possible[n] = new Coord(x(), i).ToString();
+                    n++;
+                }
             }
-            for (int i = 0; i < 8; i++)
-            {
-                if (i == y()) { continue; }
-                Possible[n] = new Coord(x(), i).ToString();
-                n++;
-            }
-
             return Possible;
         }
     }
