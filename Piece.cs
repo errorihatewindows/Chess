@@ -10,18 +10,20 @@ namespace Chess
 {
     abstract class Piece
     {
-        private Coord Position;
-        public int MoveCount;
-        public char Color;
+        protected Coord Position;
+        protected int MoveCount;
+        protected int owner;
 
-        public Piece(string Position, char Color, int MoveCount)
+        public Piece(string Position, int owner, int MoveCount)
         {
-            this.Color = Color;
+            this.owner = owner;
             this.Position = new Coord(Position);
             this.MoveCount = MoveCount;
         }
 
         #region getter
+        public char Color() { if (owner==0) { return 'W'; } else { return 'B'; } }
+        public int Owner() { return owner; }
         public int x() { return Position.x; }
         public int y() { return Position.y; }
         public string getPos() { return Position.ToString(); }
@@ -33,12 +35,12 @@ namespace Chess
         {
             Coord target = new Coord(Target);
             Coord direction = new Coord(0, 0);  //direction the target is in
-            if (target.x != 0)
+            if (target.x-Position.x != 0)
                 direction.x = 1;
-            if (target.y != 0)
+            if (target.y-Position.y != 0)
                 direction.y = 1;
             //distance from 1 point to the next on 1 axis
-            int distance = (target.x + target.y) / (direction.x + direction.y);
+            int distance = (target.x-Position.x + target.y-Position.y) / (direction.x + direction.y);
             Coord current = new Coord(Position.ToString());
             string[] output = new string[distance - 1];
             for (int i = 1; i < distance; i++)

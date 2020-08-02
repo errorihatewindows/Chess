@@ -8,7 +8,7 @@ namespace Chess
 {
     class Queen : Piece
     {
-        public Queen(string Position, char Color, int MoveCount) : base(Position, Color, MoveCount)
+        public Queen(string Position, int owner, int MoveCount) : base(Position, owner, MoveCount)
         {
 
         }

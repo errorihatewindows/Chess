@@ -125,7 +125,7 @@ namespace Chess
         {
             int n = 0;
             //Picture offset if White
-            if (Piece.Color == PlayerColor) { n = 6; }
+            if (Piece.Color() == PlayerColor) { n = 6; }
             e.DrawImage(new Bitmap(Pieces[util.charToNum[Piece.GetType()] + n], TileSize, TileSize), Piece.x() * TileSize, (7 - Piece.y()) * TileSize);
         }
 
@@ -141,9 +141,6 @@ namespace Chess
                 e.DrawRectangle(new Pen(color, 5), coords.x * TileSize, (7 - coords.y) * TileSize, TileSize, TileSize);
         }
         #endregion
-
-
-
 
 
         //util functions
