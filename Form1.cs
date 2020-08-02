@@ -17,8 +17,8 @@ namespace Chess
         private List<Tuple<Coord, Color>> HighlightedTiles = new List<Tuple<Coord, Color>>();
         private bool PlayersTurn = false;
         private const int TileSize = 60;
-        private string Move;
-        private bool Move_Finish;
+        private new string Move;
+        private bool Move_Finish = false;
 
         Board TestBoard = new Board();
 
@@ -38,7 +38,7 @@ namespace Chess
         private string TakeTurn()
         {
             Move_Finish = false;
-            Move = string.Empty;
+            Move = "";
             PlayersTurn = true;
 
             while(!Move_Finish || Move.Length < 4)
@@ -60,7 +60,7 @@ namespace Chess
                 //override Move
                 if (Move.Length == 4) 
                 { 
-                    Move = string.Empty; 
+                    Move = ""; 
                     HighlightedTiles.Clear(); 
                 }
 
@@ -78,7 +78,7 @@ namespace Chess
                 //Delet current Input
                 if (e.KeyCode == Keys.Escape)
                 {
-                    Move = string.Empty;
+                    Move = "";
                     HighlightedTiles.Clear();
                     Refresh();
                 }
