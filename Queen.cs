@@ -19,13 +19,10 @@ namespace Chess
             List<string> Possible = new List<string>();
             for (int i = 0; i < 8; i++)
             {
-                if (i == this.x()) { continue; }
-                Possible.Add(new Coord(i, this.y()).ToString());
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                if (i == this.y()) { continue; }
-                Possible.Add(new Coord(this.x(), i).ToString());
+                if (!(i == this.x()))
+                    Possible.Add(new Coord(i, this.y()).ToString());
+                if (!(i == this.y()))
+                    Possible.Add(new Coord(this.x(), i).ToString());
             }
 
             //diagonal
