@@ -35,7 +35,7 @@ namespace Chess
 
         #region Input
 
-        private string TakeTurn()
+        public string takeTurn()
         {
             Move_Finish = false;
             Move = "";
@@ -88,7 +88,7 @@ namespace Chess
             }
 
             if(e.KeyCode == Keys.Down)
-                TakeTurn();
+                takeTurn();
         }
 
 
