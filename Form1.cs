@@ -46,7 +46,7 @@ namespace Chess
 
             //initialize and Start Game
             Game = new Game(this);
-            Game.initPlayer("a", "b");
+            Game.initPlayer("human", "human");
         }
 
         #region Input

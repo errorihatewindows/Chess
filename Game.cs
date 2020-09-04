@@ -20,12 +20,18 @@ namespace Chess
         public Board getBoard() { return Board; }
 
 
-        public void initPlayer(string p, string g)
-        {       
-            Player1 = new HumanPlayer();
-            Player2 = new HumanPlayer();
-            Player1.init(Form);
-            Player2.init(Form);
+        public void initPlayer(string player1, string player2)
+        {  
+            if (player1 == "human")
+            {
+                Player1 = new HumanPlayer();
+                Player1.init(Form);
+            }
+            if (player2 == "human")
+            {
+                Player2 = new HumanPlayer();
+                Player2.init(Form);
+            }
         }
         public void run()
         {
