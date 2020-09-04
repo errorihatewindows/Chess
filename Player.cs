@@ -10,5 +10,6 @@ namespace Chess
     {
        string takeTurn(Board currentBoard);
 
+       void init(Form1 UI);
     }
 }
