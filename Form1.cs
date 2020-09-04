@@ -31,10 +31,6 @@ namespace Chess
             DoubleBuffered = true;
             ClientSize = new Size(TileSize * 8, TileSize * 8);
 
-            //initialize Game
-            Game = new Game();
-            Game.run();
-
             //load Piece-Images
             LoadImages("Assets/");
 
@@ -47,6 +43,10 @@ namespace Chess
                 Refresh();
             };
             Tick.Start();
+
+            //initialize and Start Game
+            Game = new Game(this);
+            Game.initPlayer("a", "b");
         }
 
         #region Input
@@ -102,6 +102,9 @@ namespace Chess
                 if (e.KeyCode == Keys.Enter && Move.Length > 3)
                     Move_Finish = true;
             }
+
+            if (e.KeyCode == Keys.O)
+                Game.run();
         }
 
 

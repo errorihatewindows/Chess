@@ -10,27 +10,31 @@ namespace Chess
     {
         private Player Player1, Player2;
         private Board Board;
-        public Game()
+        private Form1 Form;
+        public Game(Form1 Form)
         {
-           
+            this.Form = Form;
+            Board = new Board();
         }
 
         public Board getBoard() { return Board; }
 
 
-        public void initPlayer(string Player1, string Player2)
-        {
-            throw new NotImplementedException("not yet implemented");
+        public void initPlayer(string p, string g)
+        {       
+            Player1 = new HumanPlayer();
+            Player2 = new HumanPlayer();
+            Player1.init(Form);
+            Player2.init(Form);
         }
         public void run()
         {
-            Board = new Board();
             bool running = true;
 
             while(running)
             {
-                Board.move(Player1.takeTurn(Board));
-                Board.move(Player2.takeTurn(Board));
+                Board.Move_unchecked(Player1.takeTurn(Board));
+                Board.Move_unchecked(Player2.takeTurn(Board));
             }
         }
 
