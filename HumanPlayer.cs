@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chess
 {
-    class HumanPlayer
+    class HumanPlayer : Player
     {
         private Form1 UI;
 
