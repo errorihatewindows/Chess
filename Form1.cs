@@ -104,9 +104,6 @@ namespace Chess
                 if (e.KeyCode == Keys.Enter && Move.Length > 3)
                     Move_Finish = true;
             }
-
-            if(e.KeyCode == Keys.Down)
-                TakeTurn();
         }
 
 
