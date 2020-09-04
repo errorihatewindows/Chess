@@ -9,5 +9,7 @@ namespace Chess
     interface Player
     {
        string takeTurn(Board currentBoard);
+
+       void init(Form1 UI);
     }
 }

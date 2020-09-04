@@ -51,7 +51,7 @@ namespace Chess
 
         #region Input
 
-        private string takeTurn()
+        public string takeTurn()
         {
             Move_Finish = false;
             Move = "";
