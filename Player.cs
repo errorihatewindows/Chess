@@ -8,6 +8,6 @@ namespace Chess
 {
     interface Player
     {
-       string getMove(Board currentBoard);
+       string takeTurn(Board currentBoard);
     }
 }
