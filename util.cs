@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Chess
 {
@@ -22,5 +23,24 @@ namespace Chess
             {typeof(Queen), 4},
             {typeof(King), 5}
         };
+
+        public static void wait(int milliseconds)
+        {
+            Timer timer1 = new Timer();
+            if (milliseconds == 0 || milliseconds < 0) return;
+            timer1.Interval = milliseconds;
+            timer1.Enabled = true;
+            timer1.Start();
+            timer1.Tick += (s, e) =>
+            {
+                timer1.Enabled = false;
+                timer1.Stop();
+            };
+            while (timer1.Enabled)
+            {
+                Application.DoEvents();
+            }
+        }
+
     }
 }

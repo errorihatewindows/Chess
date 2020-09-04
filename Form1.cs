@@ -13,12 +13,16 @@ namespace Chess
 {
     public partial class Form1 : Form
     {
+        private Game Game;
         private List<Bitmap> Pieces = new List<Bitmap>();
         private List<Tuple<Coord, Color>> HighlightedTiles = new List<Tuple<Coord, Color>>();
-        private bool PlayersTurn = false;
+
+        private const int FPS = 10;
         private const int TileSize = 60;
         private new string Move;
+        private bool PlayersTurn = false;
         private bool Move_Finish = false;
+
 
         Board TestBoard = new Board();
 
@@ -29,13 +33,27 @@ namespace Chess
             DoubleBuffered = true;
             ClientSize = new Size(TileSize * 8, TileSize * 8);
 
+            //initialize Game
+            Game = new Game();
+            Game.run();
+
             //load Piece-Images
             LoadImages("Assets/");
+
+            //Update Timer
+            Timer Tick = new Timer();
+            Tick.Interval = 1000 / FPS;
+            Tick.Enabled = true;
+            Tick.Tick += (s, e) =>
+            {
+                Refresh();
+            };
+            Tick.Start();
         }
 
         #region Input
 
-        private string TakeTurn()
+        private string takeTurn()
         {
             Move_Finish = false;
             Move = "";
@@ -99,7 +117,7 @@ namespace Chess
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             DrawBoard(e.Graphics);
-            DrawPieces(TestBoard.getPieces(), e.Graphics);
+            DrawPieces(Game.getBoard().getPieces(), e.Graphics);
             HighlightTiles(HighlightedTiles, e.Graphics);
         }
 
@@ -150,7 +168,6 @@ namespace Chess
             for (int i = 0; i < 12; i++)
                 Pieces.Add(new Bitmap(path + i.ToString() + ".png"));
         }
-
         private string GetTile(int x, int y)
         {
             Coord coord = new Coord(x / TileSize, 7 - (y / TileSize));
