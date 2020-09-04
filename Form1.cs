@@ -22,11 +22,9 @@ namespace Chess
         private new string Move;
         private bool PlayersTurn = false;
         private bool Move_Finish = false;
-
-
-        Board TestBoard = new Board();
-
         private char PlayerColor = 'W';
+
+
         public Form1()
         {
             InitializeComponent();
